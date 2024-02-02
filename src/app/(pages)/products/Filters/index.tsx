@@ -12,7 +12,6 @@ import classes from './index.module.scss'
 
 const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
-
   const handleCategories = (categoryId: string) => {
     if (categoryFilters.includes(categoryId)) {
       const updatedCategories = categoryFilters.filter(id => id !== categoryId)
@@ -24,7 +23,6 @@ const Filters = ({ categories }: { categories: Category[] }) => {
   }
 
   const handleSort = (value: string) => setSort(value)
-
   return (
     <div className={classes.filters}>
       <div>
@@ -54,6 +52,7 @@ const Filters = ({ categories }: { categories: Category[] }) => {
             onRadioChange={handleSort}
             groupName="sort"
           />
+
           <RadioButton
             label="Oldest"
             value="createdAt"

@@ -1,14 +1,13 @@
 'use client'
 
-import { createContext, ReactNode, SetStateAction, useContext, useState } from 'react'
+import { createContext, SetStateAction, useContext, useState } from 'react'
 
 interface IContextType {
   categoryFilters: string[]
-  setCategoryFilters: React.Dispatch<SetStateAction<string[]>>
+  setCategoryFilters: React.Dispatch<SetStateAction<String[]>>
   sort: string
-  setSort: React.Dispatch<SetStateAction<string>>
+  setSort: React.Dispatch<SetStateAction<String>>
 }
-
 export const INITIAL_FILTER_DATA = {
   categoryFilters: [],
   setCategoryFilters: () => [],

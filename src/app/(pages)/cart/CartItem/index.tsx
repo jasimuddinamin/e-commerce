@@ -13,30 +13,34 @@ import classes from './index.module.scss'
 const CartItem = ({ product, title, metaImage, qty, addItemToCart }) => {
   const [quantity, setQuantity] = useState(qty)
 
-  const decrementQty = () => {
+  const decremetnQty = () => {
     const updatedQty = quantity > 1 ? quantity - 1 : 1
-
     setQuantity(updatedQty)
     addItemToCart({ product, quantity: Number(updatedQty) })
   }
 
   const incrementQty = () => {
-    const updatedQty = quantity + 1
-
+    const updatedQty = quantity < 10 ? quantity + 1 : 10
     setQuantity(updatedQty)
     addItemToCart({ product, quantity: Number(updatedQty) })
   }
 
   const enterQty = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updatedQty = Number(e.target.value)
+    // Check if the parsed quantity is not empty string
+    if (e.target.value.trim() !== '') {
+      const updatedQty = Number(e.target.value.replace(/[^0-9]/g, ''))
 
-    setQuantity(updatedQty)
-    addItemToCart({ product, quantity: Number(updatedQty) })
+      // Check if the parsed quantity is a valid number
+      if (!isNaN(updatedQty) && updatedQty > 0 && updatedQty < 11) {
+        setQuantity(updatedQty)
+        addItemToCart({ product, quantity: Number(updatedQty) })
+      }
+    }
   }
 
   return (
     <li className={classes.item} key={title}>
-      <Link href={`/products/${product.slug}`} className={classes.mediaWrapper}>
+      <Link href={`/product/${product.slug}`} className={classes.mediaWrapper}>
         {!metaImage && <span>No image</span>}
         {metaImage && typeof metaImage !== 'string' && (
           <Media className={classes.media} imgClassName={classes.image} resource={metaImage} fill />
@@ -50,7 +54,7 @@ const CartItem = ({ product, title, metaImage, qty, addItemToCart }) => {
         </div>
 
         <div className={classes.quantity}>
-          <div className={classes.quantityBtn} onClick={decrementQty}>
+          <div className={classes.quantityBtn} onClick={decremetnQty}>
             <Image
               src="/assets/icons/minus.svg"
               alt="minus"

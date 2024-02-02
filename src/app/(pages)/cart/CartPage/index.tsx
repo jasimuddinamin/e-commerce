@@ -68,7 +68,7 @@ export const CartPage: React.FC<{
                   <p className={classes.headersubtotal}>Subtotal</p>
                 </div>
                 {/* CART ITEM LIST */}
-                <ul className={classes.itemsList}>
+                <ul className={classes.it}>
                   {cart?.items?.map((item, index) => {
                     if (typeof item.product === 'object') {
                       const {
@@ -100,7 +100,6 @@ export const CartPage: React.FC<{
                 <div className={classes.row}>
                   <h6 className={classes.cartTotal}>Summary</h6>
                 </div>
-
                 <div className={classes.row}>
                   <p className={classes.cartTotal}>Delivery Charge</p>
                   <p className={classes.cartTotal}>$0</p>

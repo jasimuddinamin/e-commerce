@@ -63,7 +63,7 @@ const CreateAccountForm: React.FC = () => {
         await login(data)
         clearTimeout(timer)
         if (redirect) router.push(redirect as string)
-        else router.push(`/`)
+        else router.push('/')
         window.location.href = '/'
       } catch (_) {
         clearTimeout(timer)
@@ -75,11 +75,6 @@ const CreateAccountForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <p>
-        {`This is where new customers can signup and create a new account. To manage all users, `}
-        <Link href="/admin/collections/users">login to the admin dashboard</Link>
-        {'.'}
-      </p>
       <Message error={error} className={classes.message} />
       <Input
         name="email"

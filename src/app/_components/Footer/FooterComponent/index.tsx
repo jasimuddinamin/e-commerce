@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { Footer, Media } from '../../../../payload/payload-types'
-import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
+import { inclusions, noHeaderFooterUrls } from '../../../constants'
 import { Button } from '../../Button'
 import { Gutter } from '../../Gutter'
 
@@ -14,40 +13,8 @@ import classes from './index.module.scss'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
   const pathname = usePathname()
-  const navItems = footer?.navItems || [
-    {
-      link: {
-        label: 'facebook',
-        type: 'custom',
-        newTab: true,
-        url: 'https://facebook.com',
-        icon: { url: 'http://localhost:3000/media/facebook.svg' },
-        reference: null
-      }
-    },
-    {
-      link: {
-        label: 'instagram',
-        type: 'custom',
-        newTab: true,
-        url: 'https://instagram.com',
-        icon: { url: 'http://localhost:3000/media/instagram.svg' },
-        reference: null
-      }
-    },
-    {
-      link: {
-        label: 'twitter',
-        type: 'custom',
-        newTab: true,
-        url: 'https://twitter.com',
-        icon: { url: 'http://localhost:3000/media/twitter.svg' },
-        reference: null
-      }
-    }
-  ]
-    
-  console.log(JSON.parse(JSON.stringify(footer.navItems)))
+
+  const navItems = footer?.navItems || []
 
   return (
     <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
@@ -76,9 +43,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             <Link href="/">
               <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
             </Link>
-
-            <p>{footer?.copyright}</p>
-
+            <p>{footer.copyright}</p>
             <div className={classes.socialLinks}>
               {navItems.map(item => {
                 const icon = item?.link?.icon as Media
@@ -89,10 +54,10 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                     el="link"
                     href={item.link.url}
                     newTab={true}
-                    className={classes.socialLinkItem}
+                    className={classes.socialLinksItem}
                   >
                     <Image
-                      src={icon?.url}
+                      src={icon.url}
                       alt={item.link.label}
                       width={24}
                       height={24}
