@@ -20,7 +20,7 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
       href="/products"
       className={classes.card}
       style={{
-        backgroundImage: `url(${media.url})`,
+        backgroundImage: `url(${media?.url})`,
       }}
       onClick={() => setCategoryFilters([category.id])}
     >

@@ -52,12 +52,12 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                   <Button
                     key={item.link.label}
                     el="link"
-                    href={item.link.url}
+                    href={item.link?.url}
                     newTab={true}
                     className={classes.socialLinksItem}
                   >
                     <Image
-                      src={icon.url}
+                      src={icon?.url}
                       alt={item.link.label}
                       width={24}
                       height={24}
